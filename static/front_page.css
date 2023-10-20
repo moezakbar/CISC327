@@ -1,0 +1,40 @@
+
+
+/* Style the login form */
+.loginForm {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff; /* White */
+}
+
+.form {
+    margin-top: 250px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+/* Style the "Submit" button */
+.btn-primary {
+    background-color: #0ada33; /* Yellow */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #11a33f; /* Darker Yellow */
+}
+
+/* Style the form input fields */
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Adjust margin and padding for a cleaner look */
+.form-group, .form-check {
+    margin-bottom: 15px;
+}
