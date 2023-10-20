@@ -13,11 +13,19 @@ class User:
         self.paymentDetails = {} 
         self.cart = []
 
+    @app.route('/register_page')
     def register():
-        pass
+        return render_template('register_page.html')
 
+    @app.route('/', methods=['GET', 'POST'])
     def login():
-        pass
+        if request.method == 'POST':
+            return redirect(url_for('user_homepage'))
+        return render_template('front_page.html')
+    
+    @app.route('/user_homepage')
+    def user_homepage():
+        return render_template('user_homepage.html')
 
     def manageAccount():
         pass
@@ -42,6 +50,10 @@ class Restaurant:
         self.address = address
         self.foodItems = []
 
+    @app.route('/restaurant_details')
+    def restaurant_details():
+        return render_template('restaurant_details.html')
+
     def addItem(self, food_item):
         pass
 
@@ -50,24 +62,7 @@ class Restaurant:
 
     def deleteItem(self, food_item_id):
         pass
-
-
-@app.route('/', methods=['GET', 'POST'])
-def front_page():
-    if request.method == 'POST':
-        return redirect(url_for('user_homepage'))
-
-    return render_template('front_page.html')
-
-
-@app.route('/user_homepage')
-def user_homepage():
-    return render_template('user_homepage.html')
-
-@app.route('/restaurant_details')
-def restaurant_details():
-    return render_template('restaurant_details.html')
-
+ 
 
 
 if __name__ == '__main__':
