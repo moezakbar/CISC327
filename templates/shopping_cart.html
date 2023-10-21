@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delivery App</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='shopping_cart.css') }}">
+
+
+    <!-- Add Bootstrap JavaScript (requires jQuery and Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('user_homepage') }}">gOAAt &#128016</a> <!-- Brand Name -->
+        <div class="collapse navbar-collapse" id="navbarNav" style="margin-left: 1500px;">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('manageAccount') }}">Manage Account</a> <!-- Link to manage user account -->
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active"> <!-- Link to log out -->
+                    <a class="nav-link" href="/">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <h1>My cart</h1>
+    <!--First Card-->
+    <div class="row" style="height: 100%;">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="card">
+            <div class="card-body">
+                <div class="row" id="food-row">
+                    <div class="col-md-3">
+                        <!-- Food Image -->
+                        <img src="https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/1:1/w_2560%2Cc_limit/Smashburger-recipe-120219.jpg" alt="Food Image" class="img-fluid" style="max-height: 100px;">
+                    </div>
+                    <div class="col-md-7">
+                        <!-- Food Item and Price -->
+                        <h5 class="card-title">Classic Burger</h5>
+                        <p class="card-text"><strong>Price: $11.50</strong></p>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+                <div class="row" id="food-row">
+                    <div class="col-md-3">
+                        <!-- Food Image -->
+                        <img src="https://www.dadcooksdinner.com/wp-content/uploads/2022/11/Instant-Pot-Air-Fryer-Frozen-French-Fries-1280x-DSCF1341.jpg" alt="Food Image" class="img-fluid" style="max-height: 100px;">
+                    </div>
+                    <div class="col-md-7">
+                        <!-- Food Item and Price -->
+                        <h5 class="card-title">Crinkle-Cut Fries</h5>
+                        <p class="card-text"><strong>Price: $9.99</strong></p>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+                <div class="row" id="food-row">
+                    <div class="col-md-3">
+                        <!-- Food Image -->
+                        <img src="https://www.allrecipes.com/thmb/cgbx7nNnNGRNXgUtWeLLBaYwua4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/163062-crispy-turnip-fries-ddmfs-57-step-478-4x3-c84399b1e5ba4f61872f74648966b2fc.jpg" alt="Food Image" class="img-fluid" style="max-height: 100px;">
+                    </div>
+                    <div class="col-md-7">
+                        <!-- Food Item and Price -->
+                        <h5 class="card-title">Regular Fries</h5>
+                        <p class="card-text"><strong>Price: $8.99</strong></p>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+                <div class="row" id="food-row">
+                    <div class="col-md-3">
+                        <!-- Food Image -->
+                        <img src="https://mapleleafhh.com/wp-content/uploads/41610-4oz-Broiled-Beef-Burger-lo-res-10-21-2014-1024x775.jpg" alt="Food Image" class="img-fluid" style="max-height: 100px;">
+                    </div>
+                    <div class="col-md-7">
+                        <!-- Food Item and Price -->
+                        <h5 class="card-title">Angus Burger</h5>
+                        <p class="card-text"><strong>Price: $12.50</strong></p>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div>
+
+            </div>
+          </div>
+        </div>
+
+        <!--Second card-->
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title" style="margin-bottom: 10px;">Total</h3>
+              <p class="card-text">Item Total:    $42.98</p>
+              <p class="card-text">Delivery Fees:  $0.99</p>
+              <h4 class="card-title" style="margin-bottom: 10px;">Subtotal: $49.69</h4>
+              <button type="button" class="btn btn-success">Order</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+</body>
+</html>

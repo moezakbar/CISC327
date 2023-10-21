@@ -4,7 +4,7 @@
     <title>Delivery App</title>
     <!-- Add Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='register_page.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage_account.css') }}">
 
 
     <!-- Add Bootstrap JavaScript (requires jQuery and Popper.js) -->
@@ -14,34 +14,36 @@
 
 </head>
 <body>
-    <!-- Navigation Bar -->
+     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">gOAAt &#128016</a> <!-- Brand Name -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand" href="{{ url_for('user_homepage') }}">gOAAt &#128016</a>
+        <form class="d-flex" role="search" style="margin-left: 1500px;">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item" style="margin-left: 1700px;">
-                    <a class="nav-link" href="#">Register</a> <!-- Link to registration page -->
+                <li class="nav-item active"> <!-- Link to log out -->
+                    <a class="nav-link" href="/">Logout</a> 
                 </li>
             </ul>
         </div>
     </nav>
 
+    <!-- Form for editing user account details -->
     <nav class="form">
-        <form method="POST" action="{{ url_for('register') }}" class="registerForm">
+        <form method="POST" action="{{ url_for('manageAccount') }}" class="editForm">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> <!-- Input field for the user's email -->
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1"> <!-- Input field for the user's password -->
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputName1" class="form-label">Name</label> 
+                <label for="exampleInputName1" class="form-label">Name</label>
                 <input type="" class="form-control" id="exampleInputName1"> <!-- Input field for the user's name -->
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputOldPassword1" class="form-label">Old Password</label>
+                <input type="password" class="form-control" id="exampleInputOldPassword1"> <!-- Input field for the user's old password -->
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputNewPassword1" class="form-label">New Password</label>
+                <input type="password" class="form-control" id="exampleInputNewPassword1"> <!-- Input field for the user's new password -->
             </div>
             <div class="mb-3">
                 <label for="exampleInputAddress1" class="form-label">Address</label>
@@ -59,7 +61,11 @@
                 <label for="exampleInputCVV" class="form-label">CVV</label>
                 <input type="" class="form-control" id="exampleInputcvv"> <!-- Input field for the user's cvv number -->
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button> <!-- Submission button for registering account -->
+            <button type="submit" class="btn btn-primary">Submit</button> <!-- Submission button for updating user details -->
+
+            {% if success %}
+            <p style="color: green;">Details changed</p> <!-- Message if details are changed correctly -->
+            {% endif %}
         </form>
     </nav>
     
