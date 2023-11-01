@@ -38,3 +38,33 @@
 .form-group, .form-check {
     margin-bottom: 15px;
 }
+
+
+
+
+/* Adding Overlay */
+.overlay {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.176) 0%, rgba(31, 34, 40, 0.473) 100%);
+    z-index: -1;
+}
+
+/* Adding background */
+.background {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-image: url("https://wallpapercave.com/dwp2x/wp11979548.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    z-index: -2;
+}
