@@ -62,7 +62,13 @@ class User:
             Once user is logged in, it redirects user to the frontpage 
         '''
         if request.method == 'POST':
-            return redirect(url_for('user_homepage'))
+            if request.form.get('businessPortal'):
+                # If checked, redirect to the restaurant owner page
+                return redirect(url_for('restaurant_owner_pov'))
+            else:
+                # If not checked, redirect to the user homepage
+                return redirect(url_for('user_homepage'))
+            
         return render_template('front_page.html')
     
     @app.route('/user_homepage')
