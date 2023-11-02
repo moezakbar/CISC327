@@ -168,12 +168,13 @@ class Restaurant:
             Enables a restaurant to add a new menu item. 
         '''
         pass
-
-    def editItem(self, food_item_id, updated_item):
+    
+    @app.route('/edit_restaurant_info')
+    def editRestaurant():
         '''
             Enables a restaurant to make edits to a menu item. 
         '''
-        pass
+        return render_template('edit_restaurant_info.html')
 
     def deleteItem(self, food_item_id):
         '''
