@@ -14,7 +14,7 @@ db = mysql.connector.connect(
     password="12345678",
     database="delivery"
 )
-
+ 
 cursor = db.cursor()
     
 
@@ -126,7 +126,15 @@ class User:
         '''
         Renders and displays the user homepage. 
         '''
-        return render_template('user_homepage.html')
+        cursor = db.cursor(dictionary=True)
+        # Execute a query to fetch restaurant data
+        cursor.execute("SELECT * FROM restaurant")
+
+        # Fetch all the restaurant records
+        restaurants = cursor.fetchall()
+        cursor.close()
+        
+        return render_template('user_homepage.html', restaurants=restaurants)
     
     @app.route('/add_item',methods=['GET','POST'])
     def add_item(): 
