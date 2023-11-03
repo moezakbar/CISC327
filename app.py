@@ -241,7 +241,18 @@ class Restaurant:
         '''
             Renders and displays the specific restaurant page FROM THE OWNER PERSPECTIVE.
         '''
-        return render_template('restaurant_owner.html')
+        '''
+        Renders and displays the user homepage. 
+        '''
+        cursor = db.cursor(dictionary=True)
+        # Execute a query to fetch restaurant data
+        cursor.execute("SELECT * FROM fooditem")
+
+        # Fetch all the restaurant records
+        items = cursor.fetchall()
+        cursor.close()
+        
+        return render_template('restaurant_owner.html', items=items)
 
     def addItem(self, food_item):
         '''

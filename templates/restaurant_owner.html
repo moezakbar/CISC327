@@ -50,81 +50,23 @@ IN THE FUTURE, WE WILL MAKE IT BUILT INTO THE NORMAL RESTAURANT DETAILS
     </div>
 
 
-    <!-- Listing out the food items -->
+    <!-- Restaurant List -->
     <div class="container text-center">
         <div class="row">
-            <div class="col">
-                <a>
-                    <div class="card" style="width: 18rem;"> 
-                        <img src="https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/1:1/w_2560%2Cc_limit/Smashburger-recipe-120219.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Classic Burger</h5> 
-                            <p class="card-text">$11.50</p>
-                            <button class="btn btn-danger">Delete</button> <!-- Delete food item button-->
+            {% for items in items %}
+                <div class="col">
+                    <a href="">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ items.image_url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ items.name }}</h5>
+                                <p class="card-text">${{ items.price }}</p>
+                                <button class="btn btn-danger">Delete</button> <!-- Delete food item button-->
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a>
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://www.allrecipes.com/thmb/cgbx7nNnNGRNXgUtWeLLBaYwua4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/163062-crispy-turnip-fries-ddmfs-57-step-478-4x3-c84399b1e5ba4f61872f74648966b2fc.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Regular Fries</h5>
-                            <p class="card-text">$8.99</p>
-                            <button class="btn btn-danger">Delete</button> <!-- Delete food item button-->
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a>
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://www.dadcooksdinner.com/wp-content/uploads/2022/11/Instant-Pot-Air-Fryer-Frozen-French-Fries-1280x-DSCF1341.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Crinkle-Cut Fries</h5>
-                            <p class="card-text">$9.99</p>
-                            <button class="btn btn-danger">Delete</button> <!-- Delete food item button-->
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a>
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://mapleleafhh.com/wp-content/uploads/41610-4oz-Broiled-Beef-Burger-lo-res-10-21-2014-1024x775.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Angus Burger</h5>
-                            <p class="card-text">$12.50</p>
-                            <button class="btn btn-danger">Delete</button>  <!-- Delete food item button-->
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a>
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://eastbrunswickvillage.com.au/wp-content/uploads/2020/12/Fully-loaded-burger-with-oozy-cheese.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Loaded Burger</h5>
-                            <p class="card-text">$13.50</p>
-                            <button class="btn btn-danger">Delete</button> <!-- Delete food item button-->
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a>
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://flaevor.com/wp-content/uploads/2022/04/SambalFriedChickenBurger1-1024x830.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Crispy Chicken Burger</h5>
-                            <p class="card-text">$10.50</p>
-                            <button class="btn btn-danger">Delete</button> <!-- Delete food item button-->
-                        </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+            {% endfor %}
         </div>
     </div>
     
