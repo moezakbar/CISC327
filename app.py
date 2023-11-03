@@ -11,7 +11,7 @@ app = Flask(__name__)
 db = mysql.connector.connect(
     host="127.0.0.1",
     user="root",
-    password="daheck44LOL@yy",
+    password="12345678",
     database="delivery"
 )
  
@@ -217,8 +217,8 @@ class Restaurant:
         self.address = address
         self.foodItems = []
 
-    @app.route('/restaurant_details')
-    def restaurant_details():
+    @app.route('/restaurant_details/<int:restaurant_id>')
+    def restaurant_details(restaurant_id):
         '''
             Renders and displays the specific restaurant page based on its ID.
         '''
@@ -226,14 +226,18 @@ class Restaurant:
         Renders and displays the user homepage. 
         '''
         cursor = db.cursor(dictionary=True)
+        # Fetch restaurant information based on restaurant_id
+        cursor.execute("SELECT * FROM restaurant WHERE restaurant_id = %s", (restaurant_id,))
+        restaurant_info = cursor.fetchone()
+
         # Execute a query to fetch restaurant data
-        cursor.execute("SELECT * FROM fooditem")
+        cursor.execute("SELECT * FROM fooditem WHERE restaurant_id_fk = %s",(restaurant_id,))
 
         # Fetch all the restaurant records
         items = cursor.fetchall()
         cursor.close()
         
-        return render_template('restaurant_details.html', items=items)
+        return render_template('restaurant_details.html', restaurant_info=restaurant_info, items=items)
         
     
     @app.route('/restaurant_owners')
@@ -258,7 +262,8 @@ class Restaurant:
             name = request.form.get('name')
             category = request.form.get('category')
             delivery_fee = request.form.get('delivery_fee')
-            
+            #NEED TO COMPELTE THIS
+
             return render_template('edit_restaurant_info.html')
 
     def deleteItem(self, food_item_id):
