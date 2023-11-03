@@ -42,7 +42,7 @@
 /* Adding Overlay */
 .overlay {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0px;
     right: 0px;
     bottom: 0px;
@@ -54,7 +54,7 @@
 /* Adding background */
 .background {
     content: "";
-    position: absolute;
+    position: fixed;
     top: 0px;
     right: 0px;
     bottom: 0px;

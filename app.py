@@ -11,7 +11,7 @@ app = Flask(__name__)
 db = mysql.connector.connect(
     host="127.0.0.1",
     user="root",
-    password="12345678",
+    password="daheck44LOL@yy",
     database="delivery"
 )
  
@@ -222,7 +222,19 @@ class Restaurant:
         '''
             Renders and displays the specific restaurant page based on its ID.
         '''
-        return render_template('restaurant_details.html')
+        '''
+        Renders and displays the user homepage. 
+        '''
+        cursor = db.cursor(dictionary=True)
+        # Execute a query to fetch restaurant data
+        cursor.execute("SELECT * FROM fooditem")
+
+        # Fetch all the restaurant records
+        items = cursor.fetchall()
+        cursor.close()
+        
+        return render_template('restaurant_details.html', items=items)
+        
     
     @app.route('/restaurant_owners')
     def restaurant_owner_pov(): 
