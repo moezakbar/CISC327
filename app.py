@@ -3,9 +3,20 @@
 # This is the main running file for the app. To run it, Python Flask needs to be installed. Once done, you can type
 # "Python app.py" on the terminal to open the website.
 from flask import Flask, render_template, request, redirect, url_for
+import mysql.connector
 
 app = Flask(__name__)
 
+# MySQL database connection setup
+db = mysql.connector.connect(
+    host="127.0.0.1",
+    user="root",
+    password="12345678",
+    database="delivery"
+)
+
+cursor = db.cursor()
+    
 
 class User:
     '''
@@ -51,7 +62,22 @@ class User:
         '''
 
         if request.method == 'POST':
-            return redirect(url_for('user_homepage'))
+            email = request.form.get('email')
+            password = request.form.get('password')
+            name = request.form.get('name')
+            address = request.form.get('address')
+            card_number = request.form.get('card_number')
+            expiration_date = request.form.get('expiration_date')
+            cvv = request.form.get('cvv')
+
+            try:
+                cursor.execute("INSERT INTO user (email, name, address, card_number, expiration_date, cvv, password) VALUES (%s, %s, %s, %s, %s, %s, %s)",(email, name, address, card_number, expiration_date, cvv, password))
+                db.commit()  # Commit the changes to the database
+                return redirect(url_for('user_homepage'))
+            except mysql.connector.Error as err:
+                db.rollback()
+                return f"Database connection error: {err}"
+            
         return render_template('register_page.html')
 
     @app.route('/', methods=['GET', 'POST'])
@@ -61,14 +87,38 @@ class User:
             Renders the login page for the application. 
             Once user is logged in, it redirects user to the frontpage 
         '''
+    
         if request.method == 'POST':
+            email = request.form.get('email')
+            password = request.form.get('password')
+
             if request.form.get('businessPortal'):
-                # If checked, redirect to the restaurant owner page
-                return redirect(url_for('restaurant_owner_pov'))
+                
+                cursor.execute("SELECT * FROM restaurant_owner WHERE email = %s AND password = %s", (email, password))
+                restaurant_owner = cursor.fetchone()
+
+                if restaurant_owner:
+                    # If checked, redirect to the restaurant owner page
+                    return redirect(url_for('restaurant_owner_pov'))
+                else:
+                    # User doesn't exist or invalid credentials, show an error message
+                    error_message = "Invalid email or password"
+                    return render_template('front_page.html', error_message=error_message)
+
             else:
-                # If not checked, redirect to the user homepage
-                return redirect(url_for('user_homepage'))
-            
+                # Query the database to check if the user exists
+                cursor.execute("SELECT * FROM user WHERE email = %s AND password = %s", (email, password))
+                user = cursor.fetchone()
+
+                if user:
+                    # Redirect to the user homepage or any other page
+                    return redirect(url_for('user_homepage'))
+                else:
+                    # User doesn't exist or invalid credentials, show an error message
+                    error_message = "Invalid email or password"
+                    return render_template('front_page.html', error_message=error_message)
+
+
         return render_template('front_page.html')
     
     @app.route('/user_homepage')
@@ -212,4 +262,9 @@ class Order:
 if __name__ == '__main__':
     app.run(debug=True)
 
-
+@app.teardown_appcontext
+def close_db(error):
+    if hasattr(cursor, 'close'):
+        cursor.close()
+    if hasattr(db, 'close'):
+        db.close()

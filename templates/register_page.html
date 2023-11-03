@@ -25,32 +25,32 @@
     <nav class="form">
         <form method="POST" action="{{ url_for('register') }}" class="registerForm">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> <!-- Input field for the user's email -->
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email"> <!-- Input field for the user's email -->
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1"> <!-- Input field for the user's password -->
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password"> <!-- Input field for the user's password -->
             </div>
             <div class="mb-3">
                 <label for="exampleInputName1" class="form-label">Name</label> 
-                <input type="" class="form-control" id="exampleInputName1"> <!-- Input field for the user's name -->
+                <input type="" class="form-control" id="exampleInputName1" name="name"> <!-- Input field for the user's name -->
             </div>
             <div class="mb-3">
                 <label for="exampleInputAddress1" class="form-label">Address</label>
-                <input type="" class="form-control" id="exampleInputAddress"> <!-- Input field for the user's address -->
+                <input type="" class="form-control" id="exampleInputAddress" name="address"> <!-- Input field for the user's address -->
             </div>
             <div class="mb-3">
                 <label for="exampleInputCardNumber1" class="form-label">Card Number</label>
-                <input type="" class="form-control" id="exampleInputCardNumber"> <!-- Input field for the user's card number -->
+                <input type="" class="form-control" id="exampleInputCardNumber" name="card_number"> <!-- Input field for the user's card number -->
             </div>
             <div class="mb-3">
                 <label for="exampleInputExpirationDate1" class="form-label">Expiration Date</label>
-                <input type="" class="form-control" id="exampleInputExpirationDate"> <!-- Input field for the user's expiration date -->
+                <input type="" class="form-control" id="exampleInputExpirationDate" name="expiration_date"> <!-- Input field for the user's expiration date -->
             </div>
             <div class="mb-3">
                 <label for="exampleInputCVV" class="form-label">CVV</label>
-                <input type="" class="form-control" id="exampleInputcvv"> <!-- Input field for the user's cvv number -->
+                <input type="" class="form-control" id="exampleInputcvv" name="cvv"> <!-- Input field for the user's cvv number -->
             </div>
             <button type="submit" class="btn btn-primary">Submit</button> <!-- Submission button for registering account -->
         </form>
