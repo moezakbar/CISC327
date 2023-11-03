@@ -6,7 +6,7 @@
 .card {
     width: 500px;
     height: 250px;
-    border: 1px solid #ccc; /* Add a border with a color of your choice */
+    border: 2px solid #ccc; /* Add a border with a color of your choice */
     background-color: rgb(239, 235, 235);
     padding: 20px;
     margin-top: -100px;
@@ -16,7 +16,6 @@
 .card-text {
     text-align: left;
     margin-top: -13px;
-    margin-left: -20px;
     font-size: small;
     color: rgb(0, 0, 0);
 }
@@ -30,4 +29,50 @@
 .card-img-top {
     min-height: 170px;
     max-height: 170px;
+}
+
+/* Adding Centre Area */
+.centre {
+    content: "";
+    position: absolute;
+    margin-left: 255px;
+    width: 70%;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: rgba(239, 235, 235, 0.836);
+    z-index: -1;
+}
+/* Adding Overlay */
+.overlay {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.176) 0%, rgba(31, 34, 40, 0.473) 100%);
+    z-index: -2;
+}
+
+/* Adding background */
+.background {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-image: url("https://wallpapercave.com/dwp2x/wp11979548.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    z-index: -3;
+}
+.navbar-brand{
+    margin:5px;
+}
+.containerCategory {
+    margin: auto;
 }
