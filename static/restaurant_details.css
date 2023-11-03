@@ -6,3 +6,14 @@
     min-height: 200px;
     max-height: 200px;
 }
+
+.btn-primary {
+    background-color: rgb(255, 202, 57); 
+    border: none;
+}
+.btn-primary:active {
+    background-color: rgb(27, 16, 5); 
+}
+.btn-primary:hover {
+    background-color: rgb(146, 96, 49); 
+}
