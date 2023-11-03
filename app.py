@@ -242,7 +242,12 @@ class Restaurant:
         '''
             Enables a restaurant to make edits to a menu item. 
         '''
-        return render_template('edit_restaurant_info.html')
+        if request.method == 'POST':
+            name = request.form.get('name')
+            category = request.form.get('category')
+            delivery_fee = request.form.get('delivery_fee')
+            
+            return render_template('edit_restaurant_info.html')
 
     def deleteItem(self, food_item_id):
         '''
