@@ -68,7 +68,7 @@
             <div class="row">
                 {% for restaurant in restaurants %}
                     <div class="col">
-                        <a href="{{ url_for('restaurant_details') }}">
+                        <a href="{{ url_for('restaurant_details', restaurant_id=restaurant.restaurant_id) }}">
                             <div class="card" style="width: 18rem;">
                                 <img src="{{ restaurant.image_url }}" class="card-img-top" alt="...">
                                 <div class="card-body">
