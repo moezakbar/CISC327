@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Delivery App</title>
+    <meta meta name="viewport" content= "width=device-width, user-scalable=no" />
     <!-- Add Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='edit_restaurant_info.css') }}">
@@ -36,8 +37,16 @@
                 <input type="" class="form-control" id="exampleInputName1"> <!-- Input field for the user's name -->
             </div>
             <div class="mb-3">
-                <label for="exampleInputAddress1" class="form-label">Category</label>
-                <input type="" class="form-control" id="exampleInputAddress"> <!-- Input field for the user's address -->
+                <label for="exampleInputName1" class="form-label">Select Category</label>
+                <div class="options">
+                    <select name="category" class="dropdown">
+                        <option value="burger">Burger</option>
+                        <option value="pizza">Pizza</option>
+                        <option value="dessert">Dessert</option>
+                        <option value="bubbletea">Bubble Tea</option>
+                        <option value="all">All</option>
+                    </select>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="exampleInputExpirationDate1" class="form-label">Delivery Fee</label>
@@ -47,6 +56,12 @@
         </form>
     </nav>
     
+    <!-- Overlay -->
+    <div class="overlay">
+    </div>
 
+    <!-- Background -->
+    <div class="background">
+    </div>
 </body>
 </html>
