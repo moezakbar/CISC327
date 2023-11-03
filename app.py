@@ -77,6 +77,16 @@ class User:
         Renders and displays the user homepage. 
         '''
         return render_template('user_homepage.html')
+    
+    @app.route('/add_item',methods=['GET','POST'])
+    def add_item(): 
+        '''
+        Renders and displays the adding item page. 
+        '''
+        if request.method == 'POST':
+            return redirect(url_for('restaurant_owner_pov'))
+        return render_template('add_item.html')
+
 
     @app.route('/manage_account',methods=['GET','POST'])
     def manageAccount():

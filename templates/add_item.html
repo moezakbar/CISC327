@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delivery App</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='register_page.css') }}">
+
+
+    <!-- Add Bootstrap JavaScript (requires jQuery and Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/user_homepage">gOAAt &#128016</a> <!-- Brand Name -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
+    <nav class="form">
+        <form method="POST" action="{{ url_for('add_item') }}" class="registerForm">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Item Name</label>
+                <input type="item" class="form-control" id="exampleItemName" aria-describedby="emailHelp"> <!-- Input field for the user's email -->
+            </div>
+            <div class="mb-3">
+                <label for="examplePrice" class="form-label">Price</label>
+                <input type="item_price" class="form-control" id="examplePrice"> <!-- Input field for the user's expiration date -->
+            </div>
+            <div class="mb-3">
+                <label for="exampleImageURL" class="form-label">Image URL</label>
+                <input type="" class="form-control" id="exampleImageURL"> <!-- Input field for the user's cvv number -->
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button> <!-- Submission button for registering account -->
+        </form>
+    </nav>
+    
+
+</body>
+</html>
