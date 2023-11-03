@@ -34,10 +34,12 @@
 /* Adding Centre Area */
 .centre {
     content: "";
-    position: absolute;
-    margin-left: 255px;
+    position:absolute;
+    margin-left: 15%;
+    margin-right: 30%;
+    margin-bottom: 0px;
     width: 70%;
-    top: 0px;
+    top: 40px;
     right: 0px;
     bottom: 0px;
     left: 0px;
@@ -72,7 +74,4 @@
 }
 .navbar-brand{
     margin:5px;
-}
-.containerCategory {
-    margin: auto;
 }

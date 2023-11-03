@@ -36,104 +36,105 @@
             </ul>
         </div>
     </nav>
-    <!-- Navigation bar with links to different food categories -->
-    <nav class="navbar bg-body-tertiary" style="border-bottom:solid; border-width: 7px; border-color: rgb(165, 152, 141); background-color: rgb(202, 184, 175); width: 70%; margin-left: 255px; height: 120px;">
-        <div class="container">
-            <div class="containerCategory">
-                <a class="navbar-brand" href="#">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Bootstrap" width="30" height="24">
-                    <h6 style="color: black; margin-left: -15px; margin-top: 7px; font-size: 19px;">Burger</h6>
-                </a>
-                <a class="navbar-brand" href="#">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" alt="Bootstrap" width="30" height="24" style="margin-left: 170px">
-                    <h6 style="color: black; margin-left: 160px; margin-top: 7px; font-size: 19px;">Pizza</h6>
-                </a>
-                <a class="navbar-brand" href="#">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2589/2589142.png" alt="Bootstrap" width="30" height="30" style="margin-left: 170px">
-                    <h6 style="color: black; margin-left: 150px; margin-top: 7px; font-size: 19px;">Dessert</h6>
-                </a>
-                <a class="navbar-brand" href="#">
-                    <img src="https://cdn-icons-png.flaticon.com/512/5740/5740799.png" alt="Bootstrap" width="30" height="30"style="margin-left: 170px">
-                    <h6 style="color: black; margin-left: 140px; margin-top: 7px; font-size: 19px;">Bubble Tea</h6>
-                </a>
+       <!-- Center -->
+   <div class="centre">
+        <!-- Navigation bar with links to different food categories -->
+        <nav class="navbar navbar-expand-lg" style="border-bottom:solid; border-width: 7px; border-color: rgb(165, 152, 141); background-color: rgb(202, 184, 175); margin:auto; position: relative;">
+            <!-- <div class="container" style="position:absolute; margin:auto; height: 400px; background-color: aqua;"> -->
+                <div class="containerCategory" style="position: relative; background-color: rgba(0, 0, 255, 0); margin-top: 40px; margin-left: 5%; margin-right: 3%;">
+                    <a class="navbar-brand" href="#">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Bootstrap" width="30" height="24">
+                        <h6 style="color: black; margin-left: -15px; margin-top: 7px; font-size: 19px;">Burger</h6>
+                    </a>
+                    <a class="navbar-brand" href="#">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" alt="Bootstrap" width="30" height="24" style="margin-left: 200px">
+                        <h6 style="color: black; margin-left: 190px; margin-top: 7px; font-size: 19px;">Pizza</h6>
+                    </a>
+                    <a class="navbar-brand" href="#">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2589/2589142.png" alt="Bootstrap" width="30" height="30" style="margin-left: 200px">
+                        <h6 style="color: black; margin-left: 180px; margin-top: 7px; font-size: 19px;">Dessert</h6>
+                    </a>
+                    <a class="navbar-brand" href="#">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5740/5740799.png" alt="Bootstrap" width="30" height="30"style="margin-left: 200px">
+                        <h6 style="color: black; margin-left: 167px; margin-top: 7px; font-size: 19px;">Bubble Tea</h6>
+                    </a>
+                </div>
+            <!-- </div> -->
+
+        </nav>
+
+        <!-- Restaurant List -->
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <a href="{{ url_for('restaurant_details') }}">
+                        <div class="card" style="width: 18rem;">
+                            <img src="https://www.allrecipes.com/thmb/GvGzAzmqmTiCFP9AIisrHZav_Gw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Copycat-Burger-and-Fries-2000-b09140d301434155bda5a8c8a40f5e95.jpeg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Melt Grill</h5>
+                                <p class="card-text">$0.99 Delivery Fee • 4.6 Rating</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ url_for('restaurant_details') }}">
+                        <div class="card" style="width: 18rem;">
+                            <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Pizza Hut</h5>
+                                <p class="card-text">$3.99 Delivery Fee • 2.7 Rating</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ url_for('restaurant_details') }}">
+                        <div class="card" style="width: 18rem;">
+                            <img src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/11/2/0/DV1510H_fried-chicken-recipe-10_s4x3.jpg.rend.hgtvcom.1280.1280.suffix/1568222255998.jpeg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Popeyes</h5>
+                                <p class="card-text">$2.99 Delivery Fee • 4.2 Rating</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ url_for('restaurant_details') }}">
+                        <div class="card" style="width: 18rem;">
+                            <img src="https://hips.hearstapps.com/hmg-prod/images/190130-chicken-shwarma-horizontal-1549421250.png?crop=0.668xw:1.00xh;0.168xw,0&resize=1200:*" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Osmows</h5>
+                                <p class="card-text">$1.99 Delivery Fee • 4.8 Rating</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ url_for('restaurant_details') }}">
+                        <div class="card" style="width: 18rem;">
+                            <img src="https://veggiefestchicago.org/wp-content/uploads/2021/05/21-bumble.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Chatime</h5>
+                                <p class="card-text">$0.99 Delivery Fee • 1.5 Rating</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="{{ url_for('restaurant_details') }}">
+                        <div class="card" style="width: 18rem;">
+                            <img src="https://insanelygoodrecipes.com/wp-content/uploads/2020/04/Fried_Chicken.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">KFC</h5>
+                                <p class="card-text">$3.99 Delivery Fee • 3.2 Rating</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
-
-    </nav>
-
-    <!-- Restaurant List -->
-    <div class="container text-center">
-        <div class="row">
-            <div class="col">
-                <a href="{{ url_for('restaurant_details') }}">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://www.allrecipes.com/thmb/GvGzAzmqmTiCFP9AIisrHZav_Gw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Copycat-Burger-and-Fries-2000-b09140d301434155bda5a8c8a40f5e95.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Melt Grill</h5>
-                            <p class="card-text">$0.99 Delivery Fee • 4.6 Rating</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="{{ url_for('restaurant_details') }}">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Pizza Hut</h5>
-                            <p class="card-text">$3.99 Delivery Fee • 2.7 Rating</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="{{ url_for('restaurant_details') }}">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/11/2/0/DV1510H_fried-chicken-recipe-10_s4x3.jpg.rend.hgtvcom.1280.1280.suffix/1568222255998.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Popeyes</h5>
-                            <p class="card-text">$2.99 Delivery Fee • 4.2 Rating</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="{{ url_for('restaurant_details') }}">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://hips.hearstapps.com/hmg-prod/images/190130-chicken-shwarma-horizontal-1549421250.png?crop=0.668xw:1.00xh;0.168xw,0&resize=1200:*" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Osmows</h5>
-                            <p class="card-text">$1.99 Delivery Fee • 4.8 Rating</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="{{ url_for('restaurant_details') }}">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://veggiefestchicago.org/wp-content/uploads/2021/05/21-bumble.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Chatime</h5>
-                            <p class="card-text">$0.99 Delivery Fee • 1.5 Rating</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="{{ url_for('restaurant_details') }}">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://insanelygoodrecipes.com/wp-content/uploads/2020/04/Fried_Chicken.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">KFC</h5>
-                            <p class="card-text">$3.99 Delivery Fee • 3.2 Rating</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-    <!-- Center -->
-    <div class="centre">
+ 
     </div>
     <!-- Overlay -->
     <div class="overlay">
