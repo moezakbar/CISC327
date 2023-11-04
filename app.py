@@ -91,7 +91,8 @@ class User:
         '''
             Allows users to log into their accounts. 
             Renders the login page for the application. 
-            Once user is logged in, it redirects user to the frontpage 
+            Once user is logged in, it redirects user to the frontpage.
+	    If the person logging in is a restaurant owner, it will redirect to their restaurant page.
         '''
     
         if request.method == 'POST':
@@ -131,6 +132,7 @@ class User:
     def user_homepage(): 
         '''
         Renders and displays the user homepage. 
+	The user can pick a restaurant they want to order at.
         '''
         cursor = db.cursor(dictionary=True)
         # Execute a query to fetch restaurant data
@@ -156,6 +158,7 @@ class User:
     def manageAccount():
         '''
         Enables users to modify their account details.
+	Renders and displays the manage_account.html
         '''
         success = False  # Initialize success flag
 
@@ -245,10 +248,7 @@ class Restaurant:
     @app.route('/restaurant_details/<int:restaurant_id>')
     def restaurant_details(restaurant_id):
         '''
-            Renders and displays the specific restaurant page based on its ID.
-        '''
-        '''
-        Renders and displays the user homepage. 
+            Renders and displays the specific restaurant page based on its ID to the users.
         '''
         cursor = db.cursor(dictionary=True)
         # Fetch restaurant information based on restaurant_id
@@ -290,7 +290,8 @@ class Restaurant:
     @app.route('/addItem/<int:restaurantowner_id>', methods=['GET','POST'])
     def addItem(restaurantowner_id):
         '''
-            Enables a restaurant to add a new menu item. 
+            Enables a restaurant to add a new menu item.
+	    Renders and displays add_item.html
         '''
         success = False
         if request.method == 'POST':
@@ -313,7 +314,8 @@ class Restaurant:
     @app.route('/edit_restaurant_info/<int:restaurantowner_id>', methods=['GET','POST'])
     def editRestaurant(restaurantowner_id):
         '''
-            Enables a restaurant to make edits to a menu item. 
+            Enables a restaurant to make edits to a menu item.
+	    Renders and displays edit_restaurant_info.html
         '''
         success = False
 
