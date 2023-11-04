@@ -16,25 +16,31 @@
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/user_homepage">gOAAt &#128016</a> <!-- Brand Name -->
+        <a class="navbar-brand" href="{{ url_for('restaurant_owner_pov', restaurantowner_id=restaurantowner_id) }}">gOAAt &#128016</a> <!-- Brand Name -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
 
+    {% if success %}
+    <div class="alert alert-success" role="alert">
+        Food item added successfully. 
+    </div>
+    {% endif %}
+
     <nav class="form">
-        <form method="POST" action="{{ url_for('add_item') }}" class="registerForm">
+        <form method="POST" action="" class="registerForm">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Item Name</label>
-                <input type="item" class="form-control" id="exampleItemName" aria-describedby="emailHelp"> <!-- Input field for the user's email -->
+                <input type="item" class="form-control" id="exampleItemName" aria-describedby="emailHelp" name="name"> <!-- Input field for the user's email -->
             </div>
             <div class="mb-3">
                 <label for="examplePrice" class="form-label">Price</label>
-                <input type="item_price" class="form-control" id="examplePrice"> <!-- Input field for the user's expiration date -->
+                <input type="item_price" class="form-control" id="examplePrice" name="price"> <!-- Input field for the user's expiration date -->
             </div>
             <div class="mb-3">
                 <label for="exampleImageURL" class="form-label">Image URL</label>
-                <input type="" class="form-control" id="exampleImageURL"> <!-- Input field for the user's cvv number -->
+                <input type="" class="form-control" id="exampleImageURL" name="image_url"> <!-- Input field for the user's cvv number -->
             </div>
             <button type="submit" class="btn btn-primary">Submit</button> <!-- Submission button for registering account -->
         </form>
