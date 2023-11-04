@@ -15,17 +15,17 @@
     font-weight: bold;
 }
 
-/* Style the "Submit" button */
+
 .btn-primary {
-    background-color: #0ada33; /* Yellow */
+    background-color: #0ada33; 
     border: none;
 }
 
 .btn-primary:hover {
-    background-color: #11a33f; /* Darker Yellow */
+    background-color: #11a33f; 
 }
 
-/* Style the form input fields */
+
 .form-control {
     border: 1px solid #ccc;
     border-radius: 3px;
