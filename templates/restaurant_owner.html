@@ -36,8 +36,8 @@ IN THE FUTURE, WE WILL MAKE IT BUILT INTO THE NORMAL RESTAURANT DETAILS
         </div>
     </nav>
     <!-- Restaurant Information -->
-    <nav class="navbar bg-body-tertiary" style="height: 200px; background-image: url('https://www.allrecipes.com/thmb/GvGzAzmqmTiCFP9AIisrHZav_Gw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Copycat-Burger-and-Fries-2000-b09140d301434155bda5a8c8a40f5e95.jpeg'); background-size: cover; background-position: center;"></nav>
-    <h3 style="margin-top: 10px; font-weight: bold; margin-left: 8px;">Melt Grill</h3>
+    <nav class="navbar bg-body-tertiary" style="height: 200px; background-image: url('{{ restaurant_info.image_url }}'); background-size: cover; background-position: center;"></nav>
+    <h3 style="margin-top: 10px; font-weight: bold; margin-left: 8px;">{{ restaurant_info.name }}</h3>
     <p style="color: rgb(183, 178, 178); margin-top: -5px; margin-left: 8px; margin-bottom: 15px;">Open • Available until 2:00 am</p>
 
     <!-- Add buttons for editing restaurant information and adding food items -->

@@ -11,7 +11,7 @@ app = Flask(__name__)
 db = mysql.connector.connect(
     host="127.0.0.1",
     user="root",
-    password="12345678",
+    password="daheck44LOL@yy",
     database="delivery"
 )
  
@@ -99,7 +99,7 @@ class User:
 
                 if restaurant_owner:
                     # If checked, redirect to the restaurant owner page
-                    return redirect(url_for('restaurant_owner_pov'))
+                    return redirect(url_for('restaurant_owner_pov', restaurantowner_id=restaurant_owner[0]))
                 else:
                     # User doesn't exist or invalid credentials, show an error message
                     error_message = "Invalid email or password"
@@ -239,9 +239,9 @@ class Restaurant:
         
         return render_template('restaurant_details.html', restaurant_info=restaurant_info, items=items)
         
-    
-    @app.route('/restaurant_owners')
-    def restaurant_owner_pov(): 
+    #IM EDITING THIS SHIT
+    @app.route('/restaurant_owners/<int:restaurantowner_id>')
+    def restaurant_owner_pov(restaurantowner_id): 
         '''
             Renders and displays the specific restaurant page FROM THE OWNER PERSPECTIVE.
         '''
@@ -249,14 +249,21 @@ class Restaurant:
         Renders and displays the user homepage. 
         '''
         cursor = db.cursor(dictionary=True)
+        # Fetch restaurant information based on restaurant_id
+        cursor.execute("SELECT * FROM restaurant_owner WHERE restaurantowner_id = %s", (restaurantowner_id,))
+        restaurantowner_info = cursor.fetchone()
+
+        cursor.execute("SELECT * FROM restaurant WHERE restaurant_id = %s", (restaurantowner_id,))
+        restaurant_info = cursor.fetchone()
+
         # Execute a query to fetch restaurant data
-        cursor.execute("SELECT * FROM fooditem")
+        cursor.execute("SELECT * FROM fooditem WHERE restaurant_id_fk = %s",(restaurantowner_id,))
 
         # Fetch all the restaurant records
         items = cursor.fetchall()
         cursor.close()
         
-        return render_template('restaurant_owner.html', items=items)
+        return render_template('restaurant_owner.html', restaurantowner_info=restaurantowner_info, restaurant_info=restaurant_info, items=items)
 
     def addItem(self, food_item):
         '''
