@@ -50,7 +50,11 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ items.name }}</h5>
                                 <p class="card-text">${{ items.price }}</p>
-                                <button type="submit" class="btn btn-primary">&#128722</button>
+                                <form method="post" action="{{ url_for('add_to_cart') }}">
+                                    <input type="hidden" name="item_id" value="{{ items.id }}">
+                                    <input type="hidden" name="restaurant_id" value="{{ restaurant_info.restaurant_id }}">
+                                    <button type="submit" class="btn btn-primary">&#128722</button>
+                                </form>
                             </div>
                         </div>
                     </a>

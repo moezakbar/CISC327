@@ -2,7 +2,13 @@
 # Group number: 3
 # This is the main running file for the app. To run it, Python Flask needs to be installed. Once done, you can type
 # "Python app.py" on the terminal to open the website.
-from flask import Flask, render_template, request, redirect, url_for
+'''
+Instructions on how to run the program: 
+	Requirements: HTML, CSS, Python, Flask, MySQL 
+	In the files that are already sent, there is a database given but you have to make your own MySQL connection/server in order to connect the database. In the app.py program, you must change your host, user, password, and database name to what you setup the connection to be (This can be found near the very top of the program).  
+
+'''
+from flask import Flask, render_template, request, redirect, url_for, session
 import mysql.connector
 
 app = Flask(__name__)
@@ -158,11 +164,30 @@ class User:
 
         return render_template('manage_account.html', success=success)
 
-    def viewPastOrders():
+    @app.route('/add_to_cart', methods=['POST'])
+    def add_to_cart():
         '''
-        Provides users with a history of their past orders. 
+        Adds to cart list
         '''
-        pass
+        item_id = request.form.get('item_id')
+        restaurant_id = request.form.get('restaurant_id')
+
+        cursor = db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM fooditem WHERE fooditem_id = %s", (item_id,))
+        item = cursor.fetchone()
+        cursor.close()
+
+        if item:
+            # Check if a cart exists in the session, create one if not
+            if 'cart' not in session:
+                session['cart'] = []
+
+            # Add the item to the user's cart in the session
+            session['cart'].append(item.name)
+
+        return redirect(url_for('restaurant_details', restaurant_id=restaurant_id))
+
+
     
     @app.route('/shopping_cart')
     def viewShoppingCart():
