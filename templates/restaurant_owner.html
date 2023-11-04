@@ -61,7 +61,10 @@ IN THE FUTURE, WE WILL MAKE IT BUILT INTO THE NORMAL RESTAURANT DETAILS
                             <div class="card-body">
                                 <h5 class="card-title">{{ items.name }}</h5>
                                 <p class="card-text">${{ items.price }}</p>
-                                <button class="btn btn-danger">Delete</button> <!-- Delete food item button-->
+                                <form action="/deleteItem" method="POST">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <!-- You can add hidden input fields to include additional data if needed -->
+                                </form>
                             </div>
                         </div>
                     </a>

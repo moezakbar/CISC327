@@ -11,7 +11,7 @@ app = Flask(__name__)
 db = mysql.connector.connect(
     host="127.0.0.1",
     user="root",
-    password="12345678",
+    password="daheck44LOL@yy",
     database="delivery"
 )
  
@@ -239,7 +239,7 @@ class Restaurant:
         
         return render_template('restaurant_details.html', restaurant_info=restaurant_info, items=items)
         
-    #IM EDITING THIS SHIT
+
     @app.route('/restaurant_owners/<int:restaurantowner_id>')
     def restaurant_owner_pov(restaurantowner_id): 
         '''
@@ -291,11 +291,15 @@ class Restaurant:
 
         return render_template('edit_restaurant_info.html', success=success, restaurantowner_id=restaurantowner_id)
 
+    @app.route('/delete_food_item', methods=['POST'])
     def deleteItem(self, food_item_id):
         '''
             Enables a restaurant to delete a menu item. 
         '''
-        pass
+
+        cursor.execute("DELETE FROM fooditem (restaurant_id_fk, name, price, image_url)", food_item_id)
+        db.commit()
+        return redirect(url_for('restaurant_owner_pov'))
 
 class Order:
     '''
@@ -311,6 +315,7 @@ class Order:
         '''
         A function to calculate the total price
         '''
+
         pass
 
 
