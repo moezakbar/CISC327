@@ -245,9 +245,6 @@ class Restaurant:
         '''
             Renders and displays the specific restaurant page FROM THE OWNER PERSPECTIVE.
         '''
-        '''
-        Renders and displays the user homepage. 
-        '''
         cursor = db.cursor(dictionary=True)
         # Fetch restaurant information based on restaurant_id
         cursor.execute("SELECT * FROM restaurant_owner WHERE restaurantowner_id = %s", (restaurantowner_id,))
@@ -265,11 +262,28 @@ class Restaurant:
         
         return render_template('restaurant_owner.html', restaurantowner_info=restaurantowner_info, restaurant_info=restaurant_info, items=items)
 
-    def addItem(self, food_item):
+    @app.route('/addItem/<int:restaurantowner_id>', methods=['GET','POST'])
+    def addItem(restaurantowner_id):
         '''
             Enables a restaurant to add a new menu item. 
         '''
-        pass
+        success = False
+        if request.method == 'POST':
+            name = request.form.get('name')
+            price = request.form.get('price')
+            image_url = request.form.get('image_url')
+
+            try:
+                
+                cursor.execute("INSERT INTO fooditem (name, price, image_url, restaurant_id_fk) VALUES (%s, %s, %s, %s)", (name, price, image_url, restaurantowner_id))
+                db.commit()
+                success = True
+            except mysql.connector.Error as err:
+                db.rollback()
+            
+
+
+        return render_template('add_item.html', success=success, restaurantowner_id=restaurantowner_id)
     
     @app.route('/edit_restaurant_info/<int:restaurantowner_id>', methods=['GET','POST'])
     def editRestaurant(restaurantowner_id):
@@ -283,7 +297,7 @@ class Restaurant:
             category = request.form.get('category')
             delivery_fee = request.form.get('delivery_fee')
             
-             # Update the restaurant's information in the database
+            # Update the restaurant's information in the database
             cursor.execute("UPDATE restaurant SET name = %s, category = %s, delivery_fee = %s WHERE restaurantowner_id = %s", (name, category, delivery_fee, restaurantowner_id))
             db.commit()
 
