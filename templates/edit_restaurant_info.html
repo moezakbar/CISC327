@@ -17,7 +17,7 @@
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('user_homepage') }}" style="font-family: Impact, sans-serif; font-variant:small-caps; font-size: 30px;">gOAAt <span style="font-size: 19px; vertical-align: middle;"> &#128016</span> </a> <!-- Brand Name -->
+        <a class="navbar-brand" href="{{ url_for('restaurant_owner_pov', restaurantowner_id=restaurantowner_id) }}" style="font-family: Impact, sans-serif; font-variant:small-caps; font-size: 30px;">gOAAt <span style="font-size: 19px; vertical-align: middle;"> &#128016</span> </a> <!-- Brand Name -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,6 +29,12 @@
             </ul>
         </div>
     </nav>
+
+    {% if success %}
+    <div class="alert alert-success" role="alert">
+        A simple success alert—check it out!
+    </div>
+    {% endif %}
 
     <nav class="form">
         <form method="POST" action="" class="editInfoForm">

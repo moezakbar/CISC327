@@ -42,7 +42,7 @@ IN THE FUTURE, WE WILL MAKE IT BUILT INTO THE NORMAL RESTAURANT DETAILS
 
     <!-- Add buttons for editing restaurant information and adding food items -->
     <div style="margin-left: 8px; margin-top: 20px;">
-        <a href="edit_restaurant_info"><button class="btn btn-secondary">Edit Restaurant Information</button></a>
+        <a href="{{ url_for('editRestaurant', restaurantowner_id=restaurantowner_info.restaurantowner_id) }}"><button class="btn btn-secondary">Edit Restaurant Information</button></a>
     </div>
     <div style="margin-left: 8px; margin-top: 10px;">
         <a href="/add_item" class="btn btn-primary">Add Item</a>
@@ -50,7 +50,7 @@ IN THE FUTURE, WE WILL MAKE IT BUILT INTO THE NORMAL RESTAURANT DETAILS
     </div>
 
 
-    <!-- Restaurant List -->
+    <!-- food item List -->
     <div class="container text-center">
         <div class="row">
             {% for items in items %}

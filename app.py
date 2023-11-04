@@ -11,7 +11,7 @@ app = Flask(__name__)
 db = mysql.connector.connect(
     host="127.0.0.1",
     user="root",
-    password="daheck44LOL@yy",
+    password="12345678",
     database="delivery"
 )
  
@@ -271,18 +271,25 @@ class Restaurant:
         '''
         pass
     
-    @app.route('/edit_restaurant_info')
-    def editRestaurant():
+    @app.route('/edit_restaurant_info/<int:restaurantowner_id>', methods=['GET','POST'])
+    def editRestaurant(restaurantowner_id):
         '''
             Enables a restaurant to make edits to a menu item. 
         '''
+        success = False
+
         if request.method == 'POST':
             name = request.form.get('name')
             category = request.form.get('category')
             delivery_fee = request.form.get('delivery_fee')
-            #NEED TO COMPELTE THIS
+            
+             # Update the restaurant's information in the database
+            cursor.execute("UPDATE restaurant SET name = %s, category = %s, delivery_fee = %s WHERE restaurantowner_id = %s", (name, category, delivery_fee, restaurantowner_id))
+            db.commit()
 
-            return render_template('edit_restaurant_info.html')
+            success = True
+
+        return render_template('edit_restaurant_info.html', success=success, restaurantowner_id=restaurantowner_id)
 
     def deleteItem(self, food_item_id):
         '''
