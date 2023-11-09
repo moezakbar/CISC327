@@ -22,6 +22,14 @@ db = mysql.connector.connect(
 )
  
 cursor = db.cursor()
+
+# Global variable to store the shopping cart
+shopping_cart = []
+
+def clear_shopping_cart():
+    global shopping_cart
+    shopping_cart = []
+
     
 
 class User:
@@ -66,6 +74,9 @@ class User:
             Renders the registration page for the application. 
             Once user is registered, it redirects user to the user homepage.
         '''
+
+        # Clear the shopping cart when the user visits the home page
+        clear_shopping_cart()
 
         if request.method == 'POST':
             email = request.form.get('email')
@@ -181,12 +192,7 @@ class User:
         cursor.close()
 
         if item:
-            # Check if a cart exists in the session, create one if not
-            if 'cart' not in session:
-                session['cart'] = []
-
-            # Add the item to the user's cart in the session
-            session['cart'].append(item.name)
+            shopping_cart.append(item)
 
         return redirect(url_for('restaurant_details', restaurant_id=restaurant_id))
 
@@ -197,7 +203,9 @@ class User:
         '''
         Provides users with their shopping cart
         '''
-        return render_template('shopping_cart.html')
+        cart = shopping_cart
+
+        return render_template('shopping_cart.html', cart=cart)
 
     def placeOrder():
         '''
