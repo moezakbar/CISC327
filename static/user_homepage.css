@@ -31,15 +31,17 @@
     max-height: 170px;
 }
 
+
 /* Adding Centre Area */
 .centre {
     content: "";
-    position: fixed;
+    position: relative;
     margin-left: 15%;
-    margin-right: 30%;
+    margin-right: 30%; 
     margin-bottom: 0px;
+    margin-top: 0px;
     width: 70%;
-    top: 40px;
+    top: 0px;
     right: 0px;
     bottom: 0px;
     left: 0px;
@@ -67,11 +69,51 @@
     bottom: 0px;
     left: 0px;
     background-image: url("https://wallpapercave.com/dwp2x/wp11979548.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-repeat:repeat-x;
+    /* background-attachment: fixed; */
     background-size: cover;
     z-index: -3;
 }
+
 .navbar-brand{
     margin:5px;
 }
+.navbar2{
+    border-bottom:solid; 
+    border-width: 7px; 
+    border-color: rgb(165, 152, 141); 
+    background-color: rgb(202, 184, 175); 
+    margin:auto; 
+    padding-top: 7px;
+    position: relative;
+}
+
+.col2{
+    text-align: center; 
+    margin:2%
+}
+
+a:link {
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover {
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+    text-decoration: underline;
+}
+a:active {
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+    text-decoration: underline;
+  }
+
+  .container {
+    padding-bottom: 100px;
+  }
