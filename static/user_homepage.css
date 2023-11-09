@@ -35,7 +35,7 @@
 /* Adding Centre Area */
 .centre {
     content: "";
-    position: relative;
+    position: fixed;
     margin-left: 15%;
     margin-right: 30%; 
     margin-bottom: 0px;
@@ -69,8 +69,8 @@
     bottom: 0px;
     left: 0px;
     background-image: url("https://wallpapercave.com/dwp2x/wp11979548.jpg");
-    background-repeat:repeat-x;
-    /* background-attachment: fixed; */
+    /* background-repeat:repeat-x; */
+    background-attachment: fixed;
     background-size: cover;
     z-index: -3;
 }
@@ -90,7 +90,7 @@
 
 .col2{
     text-align: center; 
-    margin:2%
+    margin:2%;
 }
 
 a:link {
@@ -114,6 +114,17 @@ a:active {
     text-decoration: underline;
   }
 
-  .container {
-    padding-bottom: 100px;
-  }
+.container {
+padding-bottom: 100px;
+}
+.contain {
+    position: relative;
+    width: 70%;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    margin-left: 15%;
+    margin-right: 30%; 
+
+}
