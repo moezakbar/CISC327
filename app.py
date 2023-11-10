@@ -17,7 +17,7 @@ app = Flask(__name__)
 db = mysql.connector.connect(
     host="127.0.0.1",
     user="root",
-    password="S1f2h3r4@@@@",
+    password="12345678",
     database="delivery"
 )
  
@@ -205,7 +205,12 @@ class User:
         '''
         cart = shopping_cart
 
-        return render_template('shopping_cart.html', cart=cart)
+        totalprice = sum(item['price'] for item in cart)
+        total_price = float(totalprice)
+        subtotal = round(total_price + 0.99, 2)
+
+
+        return render_template('shopping_cart.html', cart=cart, total_price=total_price, subtotal=subtotal)
 
     def placeOrder():
         '''
@@ -346,21 +351,6 @@ class Restaurant:
         '''
         pass
 
-class Order:
-    '''
-    An object for the order placed by user
-    '''
-    def __init__(self, orderID, orderStatus, totalPrice, deliveryAddress):
-        self.orderID = orderID
-        self.orderStatus = orderStatus
-        self.totalPrice = totalPrice
-        self.deliveryAddress = deliveryAddress
-
-    def calculateprice():
-        '''
-        A function to calculate the total price
-        '''
-        pass
 
 
 if __name__ == '__main__':
