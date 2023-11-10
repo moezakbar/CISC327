@@ -130,7 +130,7 @@ class User:
 
                 if user:
                     # Redirect to the user homepage or any other page
-                    return redirect(url_for('user_homepage'))
+                    return redirect(url_for('user_homepage', user_id=user[0]))
                 else:
                     # User doesn't exist or invalid credentials, show an error message
                     error_message = "Invalid email or password"
@@ -139,8 +139,8 @@ class User:
 
         return render_template('front_page.html')
     
-    @app.route('/user_homepage')
-    def user_homepage(): 
+    @app.route('/user_homepage/<int:user_id>')
+    def user_homepage(user_id): 
         '''
         Renders and displays the user homepage. 
 	The user can pick a restaurant they want to order at.
@@ -153,7 +153,7 @@ class User:
         restaurants = cursor.fetchall()
         cursor.close()
         
-        return render_template('user_homepage.html', restaurants=restaurants)
+        return render_template('user_homepage.html', restaurants=restaurants, user_id=user_id)
     
     @app.route('/add_item',methods=['GET','POST'])
     def add_item(): 
@@ -165,18 +165,23 @@ class User:
         return render_template('add_item.html')
 
 
-    @app.route('/manage_account',methods=['GET','POST'])
-    def manageAccount():
+    @app.route('/manage_account/<int:user_id>',methods=['GET','POST'])
+    def manageAccount(user_id):
         '''
         Enables users to modify their account details.
-	Renders and displays the manage_account.html
+	    Renders and displays the manage_account.html
         '''
+        cursor = db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM user WHERE user_id = %s", (user_id,))
+        user = cursor.fetchone()
+        cursor.close()
+
         success = False  # Initialize success flag
 
         if request.method == 'POST':
             success = True
 
-        return render_template('manage_account.html', success=success)
+        return render_template('manage_account.html', success=success, user_id=user_id, user_name=user['name'])
 
     @app.route('/add_to_cart', methods=['POST'])
     def add_to_cart():
@@ -198,8 +203,8 @@ class User:
 
 
     
-    @app.route('/shopping_cart')
-    def viewShoppingCart():
+    @app.route('/shopping_cart/<int:user_id>')
+    def viewShoppingCart(user_id):
         '''
         Provides users with their shopping cart
         '''
@@ -210,7 +215,7 @@ class User:
         subtotal = round(total_price + 0.99, 2)
 
 
-        return render_template('shopping_cart.html', cart=cart, total_price=total_price, subtotal=subtotal)
+        return render_template('shopping_cart.html', cart=cart, total_price=total_price, subtotal=subtotal, user_id=user_id)
 
     def placeOrder():
         '''
@@ -258,8 +263,8 @@ class Restaurant:
         self.address = address
         self.foodItems = []
 
-    @app.route('/restaurant_details/<int:restaurant_id>')
-    def restaurant_details(restaurant_id):
+    @app.route('/restaurant_details/<int:restaurant_id>/<int:user_id>')
+    def restaurant_details(restaurant_id, user_id):
         '''
             Renders and displays the specific restaurant page based on its ID to the users.
         '''
@@ -275,7 +280,7 @@ class Restaurant:
         items = cursor.fetchall()
         cursor.close()
         
-        return render_template('restaurant_details.html', restaurant_info=restaurant_info, items=items)
+        return render_template('restaurant_details.html', restaurant_info=restaurant_info, items=items, user_id=user_id)
         
 
     @app.route('/restaurant_owners/<int:restaurantowner_id>')
