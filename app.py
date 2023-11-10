@@ -190,6 +190,7 @@ class User:
         '''
         item_id = request.form.get('item_id')
         restaurant_id = request.form.get('restaurant_id')
+        user_id = request.form.get('user_id')
 
         cursor = db.cursor(dictionary=True)
         cursor.execute("SELECT * FROM fooditem WHERE fooditem_id = %s", (item_id,))
@@ -199,7 +200,7 @@ class User:
         if item:
             shopping_cart.append(item)
 
-        return redirect(url_for('restaurant_details', restaurant_id=restaurant_id))
+        return redirect(url_for('restaurant_details', restaurant_id=restaurant_id, user_id=user_id))
 
 
     
