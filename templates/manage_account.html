@@ -16,7 +16,7 @@
 <body>
      <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('user_homepage') }}" style="font-family: Impact, sans-serif; font-variant:small-caps; font-size: 30px;">gOAAt <span style="font-size: 19px; vertical-align: middle;"> &#128016</span> </a> <!-- Brand Name -->
+        <a class="navbar-brand" href="{{ url_for('user_homepage', user_id=user_id) }}" style="font-family: Impact, sans-serif; font-variant:small-caps; font-size: 30px;">gOAAt <span style="font-size: 19px; vertical-align: middle;"> &#128016</span> </a> <!-- Brand Name -->
         <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
@@ -32,34 +32,34 @@
 
     <!-- Form for editing user account details -->
     <nav class="form">
-        <form method="POST" action="{{ url_for('manageAccount') }}" class="editForm">
+        <form method="POST" action="{{ url_for('manageAccount', user_id=user_id) }}" class="editForm">
             <div class="mb-3">
                 <label for="exampleInputName1" class="form-label">Name</label>
-                <input type="" class="form-control" id="exampleInputName1"> <!-- Input field for the user's name -->
+                <input type="" class="form-control" id="exampleInputName1" readonly value="{{ user_name }}"> <!-- Input field for the user's name -->
             </div>
             <div class="mb-3">
                 <label for="exampleInputOldPassword1" class="form-label">Old Password</label>
-                <input type="password" class="form-control" id="exampleInputOldPassword1"> <!-- Input field for the user's old password -->
+                <input type="password" class="form-control" id="exampleInputOldPassword1" name="oldpassword"> <!-- Input field for the user's old password -->
             </div>
             <div class="mb-3">
                 <label for="exampleInputNewPassword1" class="form-label">New Password</label>
-                <input type="password" class="form-control" id="exampleInputNewPassword1"> <!-- Input field for the user's new password -->
+                <input type="password" class="form-control" id="exampleInputNewPassword1" name="newpassword"> <!-- Input field for the user's new password -->
             </div>
             <div class="mb-3">
                 <label for="exampleInputAddress1" class="form-label">Address</label>
-                <input type="" class="form-control" id="exampleInputAddress"> <!-- Input field for the user's address -->
+                <input type="" class="form-control" id="exampleInputAddress" name="address"> <!-- Input field for the user's address -->
             </div>
             <div class="mb-3">
                 <label for="exampleInputCardNumber1" class="form-label">Card Number</label>
-                <input type="" class="form-control" id="exampleInputCardNumber"> <!-- Input field for the user's card number -->
+                <input type="" class="form-control" id="exampleInputCardNumber" name="card_number"> <!-- Input field for the user's card number -->
             </div>
             <div class="mb-3">
                 <label for="exampleInputExpirationDate1" class="form-label">Expiration Date</label>
-                <input type="" class="form-control" id="exampleInputExpirationDate"> <!-- Input field for the user's expiration date -->
+                <input type="" class="form-control" id="exampleInputExpirationDate" name="expiration_date"> <!-- Input field for the user's expiration date -->
             </div>
             <div class="mb-3">
                 <label for="exampleInputCVV" class="form-label">CVV</label>
-                <input type="" class="form-control" id="exampleInputcvv"> <!-- Input field for the user's cvv number -->
+                <input type="" class="form-control" id="exampleInputcvv" name="cvv"> <!-- Input field for the user's cvv number -->
             </div>
             <button type="submit" class="btn btn-primary">Submit</button> <!-- Submission button for updating user details -->
 

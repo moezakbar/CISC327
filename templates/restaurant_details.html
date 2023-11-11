@@ -16,9 +16,9 @@
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('user_homepage') }}" style="font-family: Impact, sans-serif; font-variant:small-caps; font-size: 30px;">gOAAt <span style="font-size: 19px; vertical-align: middle;"> &#128016</span> </a> <!-- Brand Name -->
+        <a class="navbar-brand" href="{{ url_for('user_homepage', user_id=user_id) }}" style="font-family: Impact, sans-serif; font-variant:small-caps; font-size: 30px;">gOAAt <span style="font-size: 19px; vertical-align: middle;"> &#128016</span> </a> <!-- Brand Name -->
 
-        <a class="shopping-cart" href="{{ url_for('viewShoppingCart') }}">&#128722</a> <!-- Shopping cart form -->
+        <a class="shopping-cart" href="{{ url_for('viewShoppingCart', user_id=user_id) }}">&#128722</a> <!-- Shopping cart form -->
         <form class="d-flex" role="search" style="margin-left: 20px;">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
@@ -50,7 +50,12 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ items.name }}</h5>
                                 <p class="card-text">${{ items.price }}</p>
-                                <button type="submit" class="btn btn-primary">&#128722</button>
+                                <form method="post" action="{{ url_for('add_to_cart') }}">
+                                    <input type="hidden" name="item_id" value="{{ items.fooditem_id }}">
+                                    <input type="hidden" name="restaurant_id" value="{{ restaurant_info.restaurant_id }}">
+                                    <input type="hidden" name="user_id" value="{{ user_id}}">
+                                    <button type="submit" class="btn btn-primary">&#128722</button>
+                                </form>
                             </div>
                         </div>
                     </a>

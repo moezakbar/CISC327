@@ -2,7 +2,13 @@
 # Group number: 3
 # This is the main running file for the app. To run it, Python Flask needs to be installed. Once done, you can type
 # "Python app.py" on the terminal to open the website.
-from flask import Flask, render_template, request, redirect, url_for
+'''
+Instructions on how to run the program: 
+	Requirements: HTML, CSS, Python, Flask, MySQL 
+	In the files that are already sent, there is a database given but you have to make your own MySQL connection/server in order to connect the database. In the app.py program, you must change your host, user, password, and database name to what you setup the connection to be (This can be found near the very top of the program).  
+
+'''
+from flask import Flask, render_template, request, redirect, url_for, session
 import mysql.connector
 
 app = Flask(__name__)
@@ -16,6 +22,14 @@ db = mysql.connector.connect(
 )
  
 cursor = db.cursor()
+
+# Global variable to store the shopping cart
+shopping_cart = []
+
+def clear_shopping_cart():
+    global shopping_cart
+    shopping_cart = []
+
     
 
 class User:
@@ -61,6 +75,9 @@ class User:
             Once user is registered, it redirects user to the user homepage.
         '''
 
+        # Clear the shopping cart when the user visits the home page
+        clear_shopping_cart()
+
         if request.method == 'POST':
             email = request.form.get('email')
             password = request.form.get('password')
@@ -85,7 +102,8 @@ class User:
         '''
             Allows users to log into their accounts. 
             Renders the login page for the application. 
-            Once user is logged in, it redirects user to the frontpage 
+            Once user is logged in, it redirects user to the frontpage.
+	    If the person logging in is a restaurant owner, it will redirect to their restaurant page.
         '''
     
         if request.method == 'POST':
@@ -112,7 +130,7 @@ class User:
 
                 if user:
                     # Redirect to the user homepage or any other page
-                    return redirect(url_for('user_homepage'))
+                    return redirect(url_for('user_homepage', user_id=user[0]))
                 else:
                     # User doesn't exist or invalid credentials, show an error message
                     error_message = "Invalid email or password"
@@ -121,10 +139,11 @@ class User:
 
         return render_template('front_page.html')
     
-    @app.route('/user_homepage')
-    def user_homepage(): 
+    @app.route('/user_homepage/<int:user_id>')
+    def user_homepage(user_id): 
         '''
         Renders and displays the user homepage. 
+	The user can pick a restaurant they want to order at.
         '''
         cursor = db.cursor(dictionary=True)
         # Execute a query to fetch restaurant data
@@ -134,7 +153,7 @@ class User:
         restaurants = cursor.fetchall()
         cursor.close()
         
-        return render_template('user_homepage.html', restaurants=restaurants)
+        return render_template('user_homepage.html', restaurants=restaurants, user_id=user_id)
     
     @app.route('/add_item',methods=['GET','POST'])
     def add_item(): 
@@ -146,30 +165,79 @@ class User:
         return render_template('add_item.html')
 
 
-    @app.route('/manage_account',methods=['GET','POST'])
-    def manageAccount():
+    @app.route('/manage_account/<int:user_id>',methods=['GET','POST'])
+    def manageAccount(user_id):
         '''
         Enables users to modify their account details.
+	    Renders and displays the manage_account.html
         '''
-        success = False  # Initialize success flag
+        
 
+        cursor = db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM user WHERE user_id = %s", (user_id,))
+        user = cursor.fetchone()
+        cursor.execute("SELECT password FROM user WHERE user_id = %s", (user_id,))
+        current_password = cursor.fetchone()["password"]
+
+        success = False
         if request.method == 'POST':
-            success = True
+            oldpassword = request.form.get('oldpassword')
+            newpassword = request.form.get('newpassword')
+            address = request.form.get('address')
+            card_number = request.form.get('card_number')
+            expiration_date = request.form.get('expiration_date')
+            cvv = request.form.get('cvv')
 
-        return render_template('manage_account.html', success=success)
+            try:
+                print("old pass ", oldpassword)
+                print("current pass ", current_password)
+                if oldpassword == current_password:
+                    print("fuck")
+                    cursor.execute("UPDATE user SET address = %s, password = %s, card_number = %s, expiration_date = %s, cvv = %s WHERE user_id = %s", (address, newpassword, card_number, expiration_date,cvv,user_id))
+                    db.commit()
+                    success = True
+                    return redirect(url_for('user_homepage', user_id=user_id))
+            except mysql.connector.Error as err:
+                    db.rollback()
+                    return f"Database connection error: {err}"
+            
+        cursor.close()
+        return render_template('manage_account.html', success=success, user_id=user_id, user_name=user['name'])
 
-    def viewPastOrders():
+    @app.route('/add_to_cart', methods=['POST'])
+    def add_to_cart():
         '''
-        Provides users with a history of their past orders. 
+        Adds to cart list
         '''
-        pass
+        item_id = request.form.get('item_id')
+        restaurant_id = request.form.get('restaurant_id')
+        user_id = request.form.get('user_id')
+
+        cursor = db.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM fooditem WHERE fooditem_id = %s", (item_id,))
+        item = cursor.fetchone()
+        cursor.close()
+
+        if item:
+            shopping_cart.append(item)
+
+        return redirect(url_for('restaurant_details', restaurant_id=restaurant_id, user_id=user_id))
+
+
     
-    @app.route('/shopping_cart')
-    def viewShoppingCart():
+    @app.route('/shopping_cart/<int:user_id>')
+    def viewShoppingCart(user_id):
         '''
         Provides users with their shopping cart
         '''
-        return render_template('shopping_cart.html')
+        cart = shopping_cart
+
+        totalprice = sum(item['price'] for item in cart)
+        total_price = float(totalprice)
+        subtotal = round(total_price + 0.99, 2)
+
+
+        return render_template('shopping_cart.html', cart=cart, total_price=total_price, subtotal=subtotal, user_id=user_id)
 
     def placeOrder():
         '''
@@ -217,13 +285,10 @@ class Restaurant:
         self.address = address
         self.foodItems = []
 
-    @app.route('/restaurant_details/<int:restaurant_id>')
-    def restaurant_details(restaurant_id):
+    @app.route('/restaurant_details/<int:restaurant_id>/<int:user_id>')
+    def restaurant_details(restaurant_id, user_id):
         '''
-            Renders and displays the specific restaurant page based on its ID.
-        '''
-        '''
-        Renders and displays the user homepage. 
+            Renders and displays the specific restaurant page based on its ID to the users.
         '''
         cursor = db.cursor(dictionary=True)
         # Fetch restaurant information based on restaurant_id
@@ -237,7 +302,7 @@ class Restaurant:
         items = cursor.fetchall()
         cursor.close()
         
-        return render_template('restaurant_details.html', restaurant_info=restaurant_info, items=items)
+        return render_template('restaurant_details.html', restaurant_info=restaurant_info, items=items, user_id=user_id)
         
 
     @app.route('/restaurant_owners/<int:restaurantowner_id>')
@@ -265,7 +330,8 @@ class Restaurant:
     @app.route('/addItem/<int:restaurantowner_id>', methods=['GET','POST'])
     def addItem(restaurantowner_id):
         '''
-            Enables a restaurant to add a new menu item. 
+            Enables a restaurant to add a new menu item.
+	    Renders and displays add_item.html
         '''
         success = False
         if request.method == 'POST':
@@ -288,7 +354,8 @@ class Restaurant:
     @app.route('/edit_restaurant_info/<int:restaurantowner_id>', methods=['GET','POST'])
     def editRestaurant(restaurantowner_id):
         '''
-            Enables a restaurant to make edits to a menu item. 
+            Enables a restaurant to make edits to a menu item.
+	    Renders and displays edit_restaurant_info.html
         '''
         success = False
 
@@ -315,22 +382,6 @@ class Restaurant:
         db.commit()
         return redirect(url_for('restaurant_owner_pov'))
 
-class Order:
-    '''
-    An object for the order placed by user
-    '''
-    def __init__(self, orderID, orderStatus, totalPrice, deliveryAddress):
-        self.orderID = orderID
-        self.orderStatus = orderStatus
-        self.totalPrice = totalPrice
-        self.deliveryAddress = deliveryAddress
-
-    def calculateprice():
-        '''
-        A function to calculate the total price
-        '''
-
-        pass
 
 
 if __name__ == '__main__':

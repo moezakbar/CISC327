@@ -17,7 +17,7 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" style="font-family: Impact, sans-serif; font-variant:small-caps; font-size: 30px;">gOAAt <span style="font-size: 19px; vertical-align: middle;"> &#128016</span> </a> <!-- Brand Name -->
-        <a class="shopping-cart" href="{{ url_for('viewShoppingCart') }}">&#128722</a> <!-- Shopping cart form -->
+        <a class="shopping-cart" href="{{ url_for('viewShoppingCart', user_id=user_id) }}">&#128722</a> <!-- Shopping cart form -->
         <form class="d-flex" role="search" style="margin-left: 20px;"> <!-- Search bar form -->
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button> 
@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for('manageAccount') }}">Manage Account</a> <!-- Link to manage user account -->
+                    <a class="nav-link" href="{{ url_for('manageAccount', user_id=user_id) }}">Manage Account</a> <!-- Link to manage user account -->
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -35,31 +35,20 @@
             </ul>
         </div>
     </nav>
-       <!-- Center -->
-   <div class="centre">
+
+
+
+    <div class="contain">
         <!-- Navigation bar with links to different food categories -->
-        <nav class="navbar navbar-expand-lg" style="border-bottom:solid; border-width: 7px; border-color: rgb(165, 152, 141); background-color: rgb(202, 184, 175); margin:auto; position: relative;">
-            <!-- <div class="container" style="position:absolute; margin:auto; height: 400px; background-color: aqua;"> -->
-                <div class="containerCategory" style="position: relative; background-color: rgba(0, 0, 255, 0); margin-top: 40px; margin-left: 5%; margin-right: 3%;">
-                    <a class="navbar-brand" href="#">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Bootstrap" width="30" height="24">
-                        <h6 style="color: black; margin-left: -15px; margin-top: 7px; font-size: 19px;">Burger</h6>
-                    </a>
-                    <a class="navbar-brand" href="#">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" alt="Bootstrap" width="30" height="24" style="margin-left: 200px">
-                        <h6 style="color: black; margin-left: 190px; margin-top: 7px; font-size: 19px;">Pizza</h6>
-                    </a>
-                    <a class="navbar-brand" href="#">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2589/2589142.png" alt="Bootstrap" width="30" height="30" style="margin-left: 200px">
-                        <h6 style="color: black; margin-left: 180px; margin-top: 7px; font-size: 19px;">Dessert</h6>
-                    </a>
-                    <a class="navbar-brand" href="#">
-                        <img src="https://cdn-icons-png.flaticon.com/512/5740/5740799.png" alt="Bootstrap" width="30" height="30"style="margin-left: 200px">
-                        <h6 style="color: black; margin-left: 167px; margin-top: 7px; font-size: 19px;">Bubble Tea</h6>
-                    </a>
+        <nav class="navbar2 navbar-expand-lg justify-content-center"> 
+                <div class="row" style="position: relative; justify-content: center;">
+                    <div class="col2"> <a href="#"> <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Bootstrap" width="30" height="24" style="position: relative; margin:3px; margin-left: 5%; margin-right: 5%;"> Burger</a></div>
+                    <div class="col2"> <a href="#"> <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" alt="Bootstrap" width="30" height="24" style="position: relative; margin:3px; margin-left: 5%; margin-right: 5%;">Pizza</div>
+                    <div class="col2"> <a href="#"> <img src="https://cdn-icons-png.flaticon.com/512/2589/2589142.png" alt="Bootstrap" width="30" height="24" style="position: relative; margin:3px; margin-left: 5%; margin-right: 5%;">Dessert</div>
+                    <div class="col2"> <a href="#"> <img src="https://cdn-icons-png.flaticon.com/512/5740/5740799.png" alt="Bootstrap" width="26" height="24" style="position: relative; margin:3px; margin-left: 15%; margin-right: 15%;">Bubble Tea</div>
+                    <div class="col2"> <a href="#"> <img src="https://cdn-icons-png.flaticon.com/512/1392/1392115.png" alt="Bootstrap" width="27" height="24" style="position: relative; margin:3px; margin-left: 5%; margin-right: 5%;">All</div>
                 </div>
             <!-- </div> -->
-
         </nav>
 
         <!-- Restaurant List -->
@@ -67,7 +56,7 @@
             <div class="row">
                 {% for restaurant in restaurants %}
                     <div class="col">
-                        <a href="{{ url_for('restaurant_details', restaurant_id=restaurant.restaurant_id) }}">
+                        <a href="{{ url_for('restaurant_details', restaurant_id=restaurant.restaurant_id, user_id=user_id) }}">
                             <div class="card" style="width: 18rem;">
                                 <img src="{{ restaurant.image_url }}" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -80,7 +69,9 @@
                 {% endfor %}
             </div>
         </div>
- 
+    </div>
+    <!-- Center -->
+    <div class="centre">
     </div>
     <!-- Overlay -->
     <div class="overlay">
@@ -89,6 +80,7 @@
     <!-- Background -->
     <div class="background">
     </div>
+
 
 </body>
 </html>
