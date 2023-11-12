@@ -17,7 +17,7 @@ app = Flask(__name__)
 db = mysql.connector.connect(
     host="127.0.0.1",
     user="root",
-    password="daheck44LOL@yy",
+    password="S1f2h3r4@@@@",
     database="delivery"
 )
  
@@ -305,7 +305,7 @@ class Restaurant:
         return render_template('restaurant_details.html', restaurant_info=restaurant_info, items=items, user_id=user_id)
         
 
-    @app.route('/restaurant_owners/<int:restaurantowner_id>')
+    @app.route('/restaurant_owner/<int:restaurantowner_id>')
     def restaurant_owner_pov(restaurantowner_id): 
         '''
             Renders and displays the specific restaurant page FROM THE OWNER PERSPECTIVE.
@@ -325,7 +325,7 @@ class Restaurant:
         items = cursor.fetchall()
         cursor.close()
         
-        return render_template('restaurant_owner.html', restaurantowner_info=restaurantowner_info, restaurant_info=restaurant_info, items=items)
+        return render_template('restaurant_owner.html', restaurantowner_info=restaurantowner_info, restaurant_info=restaurant_info, items=items, restaurantowner_id=restaurantowner_id)
 
     @app.route('/addItem/<int:restaurantowner_id>', methods=['GET','POST'])
     def addItem(restaurantowner_id):
