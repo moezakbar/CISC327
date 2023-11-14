@@ -88,12 +88,18 @@ class User:
             cvv = request.form.get('cvv')
 
             try:
+                if (password == None) or (password == ""):
+                    raise mysql.connector.Error
                 cursor.execute("INSERT INTO user (email, name, address, card_number, expiration_date, cvv, password) VALUES (%s, %s, %s, %s, %s, %s, %s)",(email, name, address, card_number, expiration_date, cvv, password))
                 db.commit()  # Commit the changes to the database
-                return redirect(url_for('user_homepage'))
+                cursor.execute("SELECT * FROM user WHERE email = %s AND password = %s", (email, password))
+                user = cursor.fetchone()
+                return redirect(url_for('user_homepage', user_id=user[0]))
             except mysql.connector.Error as err:
                 db.rollback()
-                return f"Database connection error: {err}"
+                # return f"Database connection error: {err}"
+                error_message = "Invalid registration information"
+                return render_template('register_page.html', error_message=error_message)
             
         return render_template('register_page.html')
 
