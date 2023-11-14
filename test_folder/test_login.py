@@ -61,3 +61,4 @@ def test_business_login_fail():
     text = response.read().decode('utf-8')
     assert response.status == 200  # No redirect
     assert "Invalid email or password" in text
+    

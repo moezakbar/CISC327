@@ -62,7 +62,9 @@
                 <input type="" class="form-control" id="exampleInputcvv" name="cvv"> <!-- Input field for the user's cvv number -->
             </div>
             <button type="submit" class="btn btn-primary">Submit</button> <!-- Submission button for updating user details -->
-
+            {% if error_message %}
+                    <p class="text-danger">{{ error_message }}</p>
+             {% endif %}
             {% if success %}
             <p style="color: green;">Details changed</p> <!-- Message if details are changed correctly -->
             {% endif %}

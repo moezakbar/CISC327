@@ -97,7 +97,6 @@ class User:
                 return redirect(url_for('user_homepage', user_id=user[0]))
             except mysql.connector.Error as err:
                 db.rollback()
-                # return f"Database connection error: {err}"
                 error_message = "Invalid registration information"
                 return render_template('register_page.html', error_message=error_message)
             
@@ -195,17 +194,17 @@ class User:
             cvv = request.form.get('cvv')
 
             try:
-                print("old pass ", oldpassword)
-                print("current pass ", current_password)
                 if oldpassword == current_password:
-                    print("fuck")
                     cursor.execute("UPDATE user SET address = %s, password = %s, card_number = %s, expiration_date = %s, cvv = %s WHERE user_id = %s", (address, newpassword, card_number, expiration_date,cvv,user_id))
                     db.commit()
                     success = True
                     return redirect(url_for('user_homepage', user_id=user_id))
+                else:
+                    raise mysql.connector.Error
             except mysql.connector.Error as err:
                     db.rollback()
-                    return f"Database connection error: {err}"
+                    error_message = "Invalid account information"
+                    return render_template('manage_account.html', user_id=user_id, error_message=error_message)
             
         cursor.close()
         return render_template('manage_account.html', success=success, user_id=user_id, user_name=user['name'])
