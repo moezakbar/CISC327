@@ -17,7 +17,7 @@ app = Flask(__name__)
 db = mysql.connector.connect(
     host="127.0.0.1",
     user="root",
-    password="S1f2h3r4@@@@",
+    password="12345678",
     database="delivery"
 )
  
@@ -226,6 +226,7 @@ class User:
         if item:
             shopping_cart.append(item)
 
+        print(f"Redirecting to restaurant_details with restaurant_id: {restaurant_id}, user_id: {user_id}")
         return redirect(url_for('restaurant_details', restaurant_id=restaurant_id, user_id=user_id))
 
 
