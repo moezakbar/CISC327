@@ -7,8 +7,12 @@ connection = http.client.HTTPConnection(domain)
 
 def test_manage_account():
     # No fields are left empty
+    # password is changed
+    # IF RUN PYTEST MORE THAN ONCE CHANGE body BACK TO COMMENTED EXAMPLE
+    
     headers = {'Content-type': 'application/x-www-form-urlencoded'}
     body = 'oldpassword=1233&newpassword=1234&address=newaddress&card_number=123212321232&&expiration_date=12/2022&cvv=948'
+    #body = 'oldpassword=1233&newpassword=1234&address=newaddress&card_number=123212321232&&expiration_date=12/2022&cvv=948'
 
     connection.request('POST', "/manage_account/1", body=body, headers=headers)
 
