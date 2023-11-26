@@ -5,7 +5,7 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from app import app  # Import your Flask application
+from app import app  
 from unittest.mock import patch, MagicMock
 
 @pytest.fixture
@@ -15,13 +15,12 @@ def client():
 
 def test_add_item_get_request(client):
     # Test GET request
-    response = client.get('/addItem/1')  # Assuming 1 is a valid restaurant owner ID
+    response = client.get('/addItem/1')  
     assert response.status_code == 200
 
 
 @patch('app.db')
 def test_add_item_post_success(mock_cursor, client):
-    # Mock database cursor for successful insertion
     mock_cursor_instance = mock_cursor.return_value
     mock_cursor_instance.__enter__.return_value.execute.return_value = None
 
