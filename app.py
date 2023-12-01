@@ -378,15 +378,16 @@ class Restaurant:
 
         return render_template('edit_restaurant_info.html', success=success, restaurantowner_id=restaurantowner_id)
 
-    @app.route('/delete_food_item', methods=['POST'])
-    def deleteItem(self, food_item_id):
+    @app.route('/deleteItem', methods=['POST'])
+    def deleteItem():
         '''
             Enables a restaurant to delete a menu item. 
         '''
-
-        cursor.execute("DELETE FROM fooditem (restaurant_id_fk, name, price, image_url)", food_item_id)
+        restaurantowner_id = request.form['restaurantowner_id']
+        food_item_id = request.form['food_item_id']
+        cursor.execute("DELETE FROM fooditem WHERE fooditem_id = %s", (food_item_id,))
         db.commit()
-        return redirect(url_for('restaurant_owner_pov'))
+        return redirect(url_for('restaurant_owner_pov', restaurantowner_id=restaurantowner_id))
 
 
 

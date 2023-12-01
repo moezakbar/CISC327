@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.13, pytest-7.1.2, pluggy-1.0.0
+rootdir: /Users/moezakbar/Desktop/CISC327/test_folder_A5
+plugins: anyio-3.5.0
+collected 5 items
+
+test_add_restaurant_item.py ..                                           [ 40%]
+test_add_to_cart.py ...                                                  [100%]
+
+============================== 5 passed in 0.30s ===============================
+
+Name                                      Stmts   Miss  Cover
+-------------------------------------------------------------
+/Users/moezakbar/Desktop/CISC327/app.py     192    132    31%
+test_add_restaurant_item.py                  20      0   100%
+-------------------------------------------------------------
+TOTAL                                       212    132    38%
+

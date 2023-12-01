@@ -28,4 +28,3 @@ def test_add_item_post_success(mock_cursor, client):
     data = {'name': 'New Dish', 'price': '15.99', 'image_url': 'https://www.allrecipes.com/thmb/GvGzAzmqmTiCFP9AIisrHZav_Gw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Copycat-Burger-and-Fries-2000-b09140d301434155bda5a8c8a40f5e95.jpeg', 'restaurant_id_fk': 1}
     response = client.post('/add_to_cart', data={'item_id': 1, 'restaurant_id': 1, 'user_id': 1})
     assert response.status_code == 302
-  
