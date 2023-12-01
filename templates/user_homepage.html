@@ -42,11 +42,11 @@
         <!-- Navigation bar with links to different food categories -->
         <nav class="navbar2 navbar-expand-lg justify-content-center"> 
                 <div class="row" style="position: relative; justify-content: center;">
-                    <div class="col2"> <a href="#"> <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Bootstrap" width="30" height="24" style="position: relative; margin:3px; margin-left: 5%; margin-right: 5%;">Burger</a></div>
-                    <div class="col2"> <a href="#"> <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" alt="Bootstrap" width="30" height="24" style="position: relative; margin:3px; margin-left: 5%; margin-right: 5%;">Pizza</div>
-                    <div class="col2"> <a href="#"> <img src="https://cdn-icons-png.flaticon.com/512/2589/2589142.png" alt="Bootstrap" width="30" height="24" style="position: relative; margin:3px; margin-left: 5%; margin-right: 5%;">Dessert</div>
-                    <div class="col2"> <a href="#"> <img src="https://cdn-icons-png.flaticon.com/512/5740/5740799.png" alt="Bootstrap" width="26" height="24" style="position: relative; margin:3px; margin-left: 15%; margin-right: 15%;">Bubble Tea</div>
-                    <div class="col2"> <a href="#"> <img src="https://cdn-icons-png.flaticon.com/512/1392/1392115.png" alt="Bootstrap" width="27" height="24" style="position: relative; margin:3px; margin-left: 5%; margin-right: 5%;">All</div>
+                    <div class="col2"> <a href="{{ url_for('filter',category='burger',user_id=user_id) }}"> <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Bootstrap" width="30" height="24" style="position: relative; margin:3px; margin-left: 5%; margin-right: 5%;">Burger</a></div>
+                    <div class="col2"> <a href="{{ url_for('filter',category='pizza',user_id=user_id) }}"> <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" alt="Bootstrap" width="30" height="24" style="position: relative; margin:3px; margin-left: 5%; margin-right: 5%;">Pizza</div>
+                    <div class="col2"> <a href="{{ url_for('filter',category='dessert',user_id=user_id) }}"> <img src="https://cdn-icons-png.flaticon.com/512/2589/2589142.png" alt="Bootstrap" width="30" height="24" style="position: relative; margin:3px; margin-left: 5%; margin-right: 5%;">Dessert</div>
+                    <div class="col2"> <a href="{{ url_for('filter',category='bubble tea',user_id=user_id) }}"> <img src="https://cdn-icons-png.flaticon.com/512/5740/5740799.png" alt="Bootstrap" width="26" height="24" style="position: relative; margin:3px; margin-left: 15%; margin-right: 15%;">Bubble Tea</div>
+                    <div class="col2"> <a href="{{ url_for('filter',category='all',user_id=user_id) }}"> <img src="https://cdn-icons-png.flaticon.com/512/1392/1392115.png" alt="Bootstrap" width="27" height="24" style="position: relative; margin:3px; margin-left: 5%; margin-right: 5%;">All</div>
                 </div>
             <!-- </div> -->
         </nav>

@@ -17,7 +17,7 @@ app = Flask(__name__)
 db = mysql.connector.connect(
     host="127.0.0.1",
     user="root",
-    password="12345678",
+    password="S1f2h3r4@@@@",
     database="delivery"
 )
  
@@ -158,6 +158,30 @@ class User:
         restaurants = cursor.fetchall()
         cursor.close()
         
+        return render_template('user_homepage.html', restaurants=restaurants, user_id=user_id)
+    
+    @app.route('/filter/<category>/<int:user_id>')
+    def filter(category, user_id):
+        cursor = db.cursor(dictionary=True)
+        # filter the items when the user clicks the category buttons
+        if category == 'burger':
+            select_query = "SELECT * FROM restaurant WHERE category = 'burger'"            
+            cursor.execute(select_query)
+            restaurants = cursor.fetchall()
+        elif category == 'pizza':
+            select_query = "SELECT * FROM restaurant WHERE category = 'pizza'"            
+            cursor.execute(select_query)
+            restaurants = cursor.fetchall()
+        elif category == 'dessert':
+            select_query = "SELECT * FROM restaurant WHERE category = 'dessert'"            
+            cursor.execute(select_query)
+            restaurants = cursor.fetchall()
+        elif category == 'bubble tea':
+            select_query = "SELECT * FROM restaurant WHERE category = 'bubble tea'"            
+            cursor.execute(select_query)
+            restaurants = cursor.fetchall()
+        else: # category == 'all':
+            return redirect(url_for('user_homepage', user_id=user_id))
         return render_template('user_homepage.html', restaurants=restaurants, user_id=user_id)
     
     @app.route('/add_item',methods=['GET','POST'])
