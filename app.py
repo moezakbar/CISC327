@@ -244,12 +244,15 @@ class User:
 
 
         return render_template('shopping_cart.html', cart=cart, total_price=total_price, subtotal=subtotal, user_id=user_id)
-
-    def placeOrder():
+    @app.route('/placeOrder/<int:user_id>', methods=['POST'])
+    def placeOrder(user_id):
         '''
         Allows users to place new orders for food. 
         '''
-        pass
+        clear_shopping_cart()
+        success = True
+
+        return render_template('shopping_cart.html', success=success, user_id=user_id)
 
     def cancelOrder():
         '''
